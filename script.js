@@ -25,32 +25,50 @@ function getHumanGuess(){
     return humanGuess
        
 }
-let computerGuess = getComputerGuess();
-let humanGuess = getHumanGuess()
-console.log(computerGuess)
-console.log(humanGuess)
+
+
+
 let humanScore = 0;
 let computerScore = 0;
 
 function gameRound(){
+    let computerGuess = getComputerGuess();
+    let humanGuess = getHumanGuess();
     if (computerGuess === humanGuess){
         console.log("its a DRAW!");
     }
     else if(computerGuess === "ROCK" && humanGuess === "SCISSOR"){
         console.log("YOU lose " + computerGuess + " beats the " + humanGuess);
+        computerScore = ++computerScore
     }
     else if (computerGuess === "PAPER" && humanGuess === "ROCK"){
         console.log("YOU lose " + computerGuess + " beats the " + humanGuess);
+        computerScore = ++computerScore
     }
     else if (computerGuess === "SCISSOR" && humanGuess == "PAPER"){
         console.log("YOU lose " + computerGuess + " beats the " + humanGuess);
+        computerScore = ++computerScore
     }
     else {
-        console.log("YOU win " + computerGuess + " beats the "+ humanGuess);
+        console.log("YOU win " + humanGuess + " beats the "+ computerGuess);
+        humanScore = ++humanScore
+       
     }
 }
-function game(){
+
+function playGame(){
+    for (let i = 0 ; i<= 4 ; i++){
+        gameRound();
+    }
+    if (humanScore > computerScore){
+        alert("YOU WIN AGAINST COMPUTER WITH SOCRE OF " + humanScore + " to " + computerScore);
+    }
+    else if (humanScore < computerScore){
+        alert("YOU LOSE AGAINST COMPUTER WITH SCORE OF  " + humanScore + " to "+ computerScore)
+    }
+    else{
+        alert("DRAW")
+    }
 
 }
-
 
