@@ -69,6 +69,5 @@ function playGame(){
     else{
         alert("DRAW")
     }
-
-}
-
+}    
+playGame()
