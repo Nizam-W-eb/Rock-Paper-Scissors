@@ -4,70 +4,63 @@ function getComputerGuess(){
    let computerGuess;
    if (random === 1) {
     computerGuess = "ROCK";
-    
-    
-   }
+    }
    else if (random === 2){
     computerGuess = "PAPER";
-    
-   }
+    }
    else if(random === 3){
     computerGuess = "SCISSOR";
-    
-   }
+    }
    return computerGuess
 }
-
-function getHumanGuess(){
-    let Guess = prompt("Select Rock,Paper or Scissor");
-    let humanGuess = Guess.toUpperCase()
-    
-    return humanGuess
-       
-}
-
-
 
 let humanScore = 0;
 let computerScore = 0;
 
-function gameRound(){
-    let computerGuess = getComputerGuess();
-    let humanGuess = getHumanGuess();
-    if (computerGuess === humanGuess){
-        console.log("its a DRAW!");
+
+function game(e) {
+    /// get the choice from the buttons
+    let item = e.target;
+    let human = item.getAttribute('id');
+    human = human.toUpperCase()
+    /// get computer choice 
+    let computer = getComputerGuess();
+    
+    if (computer === 'PAPER' && human === 'ROCK'){
+        computerScore = ++computerScore;
     }
-    else if(computerGuess === "ROCK" && humanGuess === "SCISSOR"){
-        console.log("YOU lose " + computerGuess + " beats the " + humanGuess);
-        computerScore = ++computerScore
+    else if (computer === 'SCISSOR' && human === 'PAPER'){
+        computerScore = ++computerScore;
     }
-    else if (computerGuess === "PAPER" && humanGuess === "ROCK"){
-        console.log("YOU lose " + computerGuess + " beats the " + humanGuess);
-        computerScore = ++computerScore
-    }
-    else if (computerGuess === "SCISSOR" && humanGuess == "PAPER"){
-        console.log("YOU lose " + computerGuess + " beats the " + humanGuess);
-        computerScore = ++computerScore
+    else if (computer === 'ROCK' && human === 'SCISSOR'){
+        computerScore = ++computerScore;
     }
     else {
-        console.log("YOU win " + humanGuess + " beats the "+ computerGuess);
-        humanScore = ++humanScore
-       
+        humanScore = ++humanScore;
     }
-}
+    let scoreHuman = document.querySelector('.human-score');
+    let scoreComputer = document.querySelector('.computer-score');
+    scoreHuman.textContent = humanScore;
+    scoreComputer.textContent = computerScore;
 
-function playGame(){
-    for (let i = 0 ; i<= 4 ; i++){
-        gameRound();
+    let winStatment = document.querySelector('.win-statement');
+    if (humanScore === 5|| computerScore === 5){
+        selector.remove()
+       if (humanScore > computerScore){
+         winStatment.textContent = 'YOU WON';
+       }
+       else {
+         winStatment.textContent = 'I know that you would lose';
+       }
     }
-    if (humanScore > computerScore){
-        alert("YOU WIN AGAINST COMPUTER WITH SOCRE OF " + humanScore + " to " + computerScore);
-    }
-    else if (humanScore < computerScore){
-        alert("YOU LOSE AGAINST COMPUTER WITH SCORE OF  " + humanScore + " to "+ computerScore)
-    }
-    else{
-        alert("DRAW")
-    }
-}    
-playGame()
+
+};
+
+
+
+let selector = document.querySelector('.selector');
+selector.addEventListener('click', game)
+
+
+
+
