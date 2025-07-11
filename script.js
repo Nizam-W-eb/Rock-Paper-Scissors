@@ -47,10 +47,10 @@ function game(e) {
     if (humanScore === 5|| computerScore === 5){
         selector.remove()
        if (humanScore > computerScore){
-         winStatment.textContent = 'YOU WON';
+         winStatment.textContent = 'You LOSER';
        }
        else {
-         winStatment.textContent = 'I know that you would lose';
+         winStatment.textContent = 'Miracle, YOU WON.';
        }
     }
 
